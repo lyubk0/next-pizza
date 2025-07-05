@@ -16,7 +16,6 @@ export async function updateCartTotalAmount(cartToken: string) {
 					productItemId: true,
 					cartId: true,
 					quantity: true,
-					totalPrice: true,
 					description: true,
 					productItem: {
 						select: {
