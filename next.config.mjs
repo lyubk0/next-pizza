@@ -1,6 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-};
+	experimental: {
+		appDir: true,
+	},
+	images: {
+		domains: ['localhost'],
+	},
+	webpack(config) {
+		config.module.rules.push({
+			test: /\.svg$/,
+			use: ['@svgr/webpack'],
+		})
+		return config
+	},
+}
 
-export default nextConfig;
+export default nextConfig

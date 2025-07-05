@@ -1,57 +1,78 @@
-import { prisma } from "@/prisma/prisma-client";
-import { calcCartItemTotalPrice } from "./calc-cart-item-total-price";
+import { prisma } from '@/prisma/prisma-client'
+import { CartItemDTO } from '@/services/dto/cart'
+import { calcCartItemTotalPrice } from './calc-cart-item-total-price'
 
 export async function updateCartTotalAmount(cartToken: string) {
-  const userCart = await prisma.cart.findFirst({
-    where: {
-      OR: [
-        {
-          token: cartToken,
-        },
-      ],
-    },
-    include: {
-      items: {
-        orderBy: {
-          createdAt: "desc",
-        },
-        include: {
-          productItem: {
-            include: {
-              product: true,
-            },
-          },
-          ingredients: true,
-        },
-      },
-    },
-  });
+	const cart = await prisma.cart.findFirst({
+		where: {
+			token: cartToken,
+		},
+		include: {
+			items: {
+				select: {
+					id: true,
+					createdAt: true,
+					updatedAt: true,
+					productItemId: true,
+					cartId: true,
+					quantity: true,
+					totalPrice: true,
+					description: true,
+					productItem: {
+						select: {
+							id: true,
+							price: true,
+							product: {
+								select: {
+									id: true,
+									name: true,
+									imageUrl: true,
+								},
+							},
+						},
+					},
+					ingredients: {
+						select: {
+							id: true,
+							price: true,
+							name: true,
+						},
+					},
+				},
+				orderBy: {
+					createdAt: 'desc',
+				},
+			},
+		},
+	})
 
-  const totalAmount = userCart?.items.reduce((acc, item) => {
-    return acc + calcCartItemTotalPrice(item);
-  }, 0);
+	if (!cart) return null
 
-  return await prisma.cart.update({
-    where: {
-      id: userCart?.id,
-    },
-    data: {
-      totalAmount,
-    },
-    include: {
-      items: {
-        orderBy: {
-          createdAt: "desc",
-        },
-        include: {
-          productItem: {
-            include: {
-              product: true,
-            },
-          },
-          ingredients: true,
-        },
-      },
-    },
-  });
+	const totalAmount = cart.items.reduce((acc, item) => {
+		return acc + calcCartItemTotalPrice(item as CartItemDTO)
+	}, 0)
+
+	return await prisma.cart.update({
+		where: {
+			id: cart.id,
+		},
+		data: {
+			totalAmount,
+		},
+		include: {
+			items: {
+				orderBy: {
+					createdAt: 'desc',
+				},
+				include: {
+					productItem: {
+						include: {
+							product: true,
+						},
+					},
+					ingredients: true,
+				},
+			},
+		},
+	})
 }
