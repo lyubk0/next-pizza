@@ -2,60 +2,22 @@
 import { Title } from '@/components/shared'
 import { cn } from '@/lib/utils'
 import { useCategoryStore } from '@/store/category'
-import { Product as PrismaProduct } from '@prisma/client'
-import { AnimatePresence, motion, Variants } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useIntersection } from 'react-use'
-import { AnimatedProductCard } from './animated-product-card'
 import { ProductCard } from './product-card'
-
-interface Product extends PrismaProduct {
-	items?: any[]
-	ingredients?: any[]
-}
+import {
+	productsAnimationVariants,
+	productsContainerVariants,
+} from './products-animations'
 
 interface Props {
 	title: string
-	products: Product[]
+	products: any[]
 	className?: string
 	listClassName?: string
 	categoryId: number
-}
-
-const containerVariants: Variants = {
-	hidden: {
-		opacity: 0,
-		scale: 0.98,
-	},
-	show: {
-		opacity: 1,
-		scale: 1,
-		transition: {
-			staggerChildren: 0.08,
-			delayChildren: 0.1,
-			type: 'spring',
-			stiffness: 100,
-			damping: 20,
-			mass: 1,
-		},
-	},
-}
-
-const gridVariants: Variants = {
-	hidden: {
-		opacity: 0,
-		y: 20,
-	},
-	show: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			type: 'spring',
-			stiffness: 150,
-			damping: 25,
-		},
-	},
 }
 
 export const ProductsGroupList: React.FC<Props> = ({
@@ -70,75 +32,69 @@ export const ProductsGroupList: React.FC<Props> = ({
 	const intersection = useIntersection(intersectionRef, {
 		threshold: 0.5,
 	})
-	const [visibleProducts, setVisibleProducts] = useState(products)
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (intersection?.isIntersecting) {
 			setCategoryId(categoryId)
 		}
 	}, [intersection?.isIntersecting, categoryId, title, setCategoryId])
 
-	useEffect(() => {
-		setVisibleProducts(products)
-	}, [products])
-
 	if (products.length === 0) return null
 
 	return (
-		<motion.div
-			initial='hidden'
-			animate='show'
-			variants={containerVariants}
-			id={`category-${categoryId}`}
-			layout='preserve-aspect'
-			className={className}
-		>
-			<Title text={title} size='lg' className='font-extrabold mb-3' />
+		<div ref={intersectionRef} id={title} className={className}>
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{
+					type: 'spring',
+					stiffness: 200,
+					damping: 20,
+				}}
+			>
+				<Title text={title} size='lg' className='font-extrabold mb-3' />
+			</motion.div>
 
 			<motion.div
 				className={cn(
-					'grid gap-5 grid-cols-1 xs:grid-cols-2  md:grid-cols-3 ',
+					'grid gap-5 grid-cols-1 xs:grid-cols-2 md:grid-cols-3',
 					listClassName
 				)}
-				variants={gridVariants}
-				layout='preserve-aspect'
+				variants={productsContainerVariants}
+				initial='hidden'
+				animate='visible'
 			>
-				<AnimatePresence initial={false} mode='sync'>
-					{visibleProducts.map((product, index) => (
+				<AnimatePresence mode='popLayout'>
+					{products.map((product, index) => (
 						<motion.div
 							key={product.id}
-							layout='position'
-							initial={{ opacity: 0, scale: 0.8 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.8 }}
+							variants={productsAnimationVariants}
+							layout
+							layoutId={`product-${product.id}`}
 							transition={{
-								type: 'spring',
-								stiffness: 200,
-								damping: 25,
+								layout: {
+									type: 'spring',
+									stiffness: 500,
+									damping: 30,
+									mass: 0.5,
+								},
 							}}
 						>
-							<AnimatedProductCard index={index}>
-								<Link
-									className='flex justify-between'
-									scroll={false}
-									href={`/product/${product.id}`}
-								>
-									<ProductCard
-										key={product.id}
-										id={product.id}
-										name={product.name}
-										price={product.items?.[0]?.price ?? product.price}
-										ingredients={product.ingredients}
-										description={product.description || undefined}
-										imageUrl={product.imageUrl}
-										className='w-full'
-									/>
-								</Link>
-							</AnimatedProductCard>
+							<Link scroll={false} href={`/product/${product.id}`}>
+								<ProductCard
+									id={product.id}
+									name={product.name}
+									price={product.items[0].price}
+									ingredients={product.ingredients}
+									description={product.description}
+									imageUrl={product.imageUrl}
+									className='w-full h-full'
+								/>
+							</Link>
 						</motion.div>
 					))}
 				</AnimatePresence>
 			</motion.div>
-		</motion.div>
+		</div>
 	)
 }
