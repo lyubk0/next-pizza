@@ -1,19 +1,21 @@
+import { Variants } from 'framer-motion'
+
 export const productsContainerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.1,
-			delayChildren: 0.2,
+			staggerChildren: 0.08,
+			delayChildren: 0.1,
 		},
 	},
 }
 
-export const productsAnimationVariants = {
+export const productsAnimationVariants: Variants = {
 	hidden: {
 		opacity: 0,
-		y: 30,
-		scale: 0.95,
+		y: 20,
+		scale: 0.9,
 	},
 	visible: {
 		opacity: 1,
@@ -21,20 +23,18 @@ export const productsAnimationVariants = {
 		scale: 1,
 		transition: {
 			type: 'spring',
-			stiffness: 300,
-			damping: 20,
-			mass: 0.8,
+			stiffness: 400,
+			damping: 25,
+			mass: 0.5,
 		},
 	},
 	exit: {
 		opacity: 0,
+		scale: 0.7,
 		y: -20,
-		scale: 0.9,
 		transition: {
-			type: 'spring',
-			stiffness: 500,
-			damping: 30,
-			duration: 0.2,
+			duration: 0.1, // Еще быстрее
+			ease: 'easeIn',
 		},
 	},
 }

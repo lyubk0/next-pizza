@@ -57,27 +57,33 @@ export const ProductsGroupList: React.FC<Props> = ({
 
 			<motion.div
 				className={cn(
-					'grid gap-5 grid-cols-1 xs:grid-cols-2 md:grid-cols-3',
+					'grid gap-5 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 relative',
 					listClassName
 				)}
 				variants={productsContainerVariants}
 				initial='hidden'
 				animate='visible'
+				style={{
+					overflow: 'hidden',
+				}}
 			>
-				<AnimatePresence mode='popLayout'>
+				<AnimatePresence mode='popLayout' initial>
 					{products.map((product, index) => (
 						<motion.div
 							key={product.id}
 							variants={productsAnimationVariants}
-							layout
+							layout='position'
 							layoutId={`product-${product.id}`}
 							transition={{
 								layout: {
 									type: 'spring',
-									stiffness: 500,
-									damping: 30,
-									mass: 0.5,
+									stiffness: 600,
+									damping: 35,
+									mass: 0.3,
 								},
+							}}
+							style={{
+								zIndex: 1,
 							}}
 						>
 							<Link scroll={false} href={`/product/${product.id}`}>
