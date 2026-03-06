@@ -30,6 +30,7 @@ export const PayOrderTemplate = ({
           <div class="header">
             <div class="logo">Next Pizza 🍕</div>
           </div>
+<<<<<<< HEAD
           <div class="content">
             <h2>Оплата замовлення #${orderId}</h2>
             <p>Дякуємо за ваше замовлення! Для завершення покупки, будь ласка, оплатіть замовлення.</p>
@@ -47,6 +48,25 @@ export const PayOrderTemplate = ({
           </div>
           <div class="footer">
             <p>© ${new Date().getFullYear()} Next Pizza. Всі права захищені.</p>
+=======
+            <div class="content">
+            <h2>Payment for order #${orderId}</h2>
+            <p>Thank you for your order! To complete your purchase, please pay for your order.</p>
+            
+            <div class="order-info">
+              <p>Order number: <strong>#${orderId}</strong></p>
+              <p>Amount to pay: <span class="amount">$${totalAmount}</span></p>
+            </div>
+
+            <p>To pay for your order, click the button below:</p>
+            <a href="${paymentUrl}" class="button">Pay for order</a>
+            
+            <p style="margin-top: 20px; font-size: 14px;">If the button does not work, copy and paste this link into your browser:<br>
+            <a href="${paymentUrl}" style="color: #666; word-break: break-all;">${paymentUrl}</a></p>
+          </div>
+          <div class="footer">
+            <p>© ${new Date().getFullYear()} Next Pizza. All rights reserved.</p>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
           </div>
         </div>
       </body>

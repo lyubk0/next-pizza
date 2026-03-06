@@ -42,16 +42,28 @@ export async function POST(req: NextRequest) {
 
 		if (orderStatus === OrderStatus.SUCCEEDED) {
 			const items = JSON.parse(
+<<<<<<< HEAD
 				order?.items as unknown as string
 			) as CartItemDTO[]
 			await sendEmail(
 				order.email,
 				'Next Pizza / Ваше замовлення успішно оплачено! 🎉',
+=======
+				order?.items as unknown as string,
+			) as CartItemDTO[]
+			await sendEmail(
+				order.email,
+				'Next Pizza / Your order has been successfully paid! 🎉',
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 				OrderSuccessTemplate({
 					orderId: order.id,
 					totalAmount: order.totalAmount,
 					items,
+<<<<<<< HEAD
 				}) as string
+=======
+				}) as string,
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 			)
 		}
 		return NextResponse.json({ status: 200 })

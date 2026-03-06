@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -42,3 +43,6 @@ export async function GET(req: NextRequest) {
     console.log("[Verify] Server error", error);
   }
 }
+=======
+export { GET, POST } from '@/app/api/auth/[...all]/route'
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)

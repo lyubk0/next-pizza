@@ -1,5 +1,9 @@
 'use client'
 
+<<<<<<< HEAD
+=======
+import { Input } from '@/components/ui'
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 import { cn } from '@/lib/utils'
 import { Api } from '@/services/api-client'
 import { useSearchStore } from '@/store/search'
@@ -15,10 +19,15 @@ interface Props {
 }
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
+<<<<<<< HEAD
 	const { isActive, setActive } = useSearchStore(state => ({
 		isActive: state.isActive,
 		setActive: state.setActive,
 	}))
+=======
+	const isActive = useSearchStore(state => state.isActive)
+	const setActive = useSearchStore(state => state.setActive)
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 
 	const [value, setValue] = React.useState('')
 	const [isFocus, setIsFocus] = React.useState(false)
@@ -38,7 +47,11 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 			fetch()
 		},
 		250,
+<<<<<<< HEAD
 		[value]
+=======
+		[value],
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 	)
 
 	const onClickItem = () => {
@@ -81,13 +94,22 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 				tabIndex={-1}
 			>
 				<Search className='absolute top-1/2 translate-y-[-50%] left-3 h-5 text-gray-400 mb-5' />
+<<<<<<< HEAD
 				<input
+=======
+				<Input
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					ref={inputRef}
 					type='text'
 					value={value}
 					onChange={e => setValue(e.target.value)}
+<<<<<<< HEAD
 					className='rounded-2xl outline-none w-full bg-gray-100 pl-11'
 					placeholder='Знайти піццу...'
+=======
+					className='rounded-2xl h-full outline-none w-full pl-11'
+					placeholder='Find pizza...'
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					onFocus={() => setIsFocus(true)}
 				/>
 
@@ -95,7 +117,11 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 					<div
 						className={cn(
 							'absolute w-full bg-white rounded-xl py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
+<<<<<<< HEAD
 							isFocus && 'visible opacity-100 top-12'
+=======
+							isFocus && 'visible opacity-100 top-12',
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 						)}
 					>
 						{products.map(product => (

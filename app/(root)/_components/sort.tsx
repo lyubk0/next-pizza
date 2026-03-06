@@ -17,8 +17,13 @@ interface Props {
 }
 
 const sorts = [
+<<<<<<< HEAD
 	{ name: 'зростанню ціни', value: 'asc' },
 	{ name: 'спадінню ціни', value: 'desc' },
+=======
+	{ name: 'price ascending', value: 'asc' },
+	{ name: 'price descending', value: 'desc' },
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 ]
 
 export const Sort: React.FC<Props> = ({ className }) => {
@@ -40,7 +45,11 @@ export const Sort: React.FC<Props> = ({ className }) => {
 					)}
 				>
 					<ArrowUpDown size={16} />
+<<<<<<< HEAD
 					Сортування по:
+=======
+					Sort by:
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					<span className='text-primary'>{sorts[activeIndex].name}</span>
 				</button>
 			</DropdownMenuTrigger>

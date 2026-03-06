@@ -15,19 +15,31 @@ interface Props {
 
 export const CheckoutDeliveryInfo: React.FC<Props> = ({ className }) => {
   return (
+<<<<<<< HEAD
     <WhiteBlock title="3. Адреса доставки" className={className}>
+=======
+    <WhiteBlock title="3. Delivery address" className={className}>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
       <div className="flex flex-col gap-5">
         <FormInput
           name={"address"}
           className="text-base"
+<<<<<<< HEAD
           placeholder="Адреса"
+=======
+          placeholder="Address"
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
         />
 
         <FormTextarea
           name="comment"
           rows={5}
           className="text-base"
+<<<<<<< HEAD
           placeholder="Коментар до замовлення"
+=======
+          placeholder="Order comment"
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
         />
       </div>
     </WhiteBlock>

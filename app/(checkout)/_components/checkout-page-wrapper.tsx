@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use client'
 
 import { Title } from '@/components/shared'
@@ -8,8 +7,7 @@ import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { createOrder } from '@/app/actions'
-import { Api } from '@/services/api-client'
-import { useSession } from 'next-auth/react'
+import { authClient } from '@/lib/auth-client'
 import toast from 'react-hot-toast'
 import { CheckoutCart } from '../_components/checkout-cart'
 import { CheckoutDeliveryInfo } from '../_components/checkout-delivery-info'
@@ -20,17 +18,22 @@ import {
 	checkoutFormSchema,
 } from '../_components/schemas/checkout-form-schema'
 
-export default function CheckoutPage() {
+interface Props {
+	className?: string
+}
+
+export const CheckoutPageWrapper = ({ className }: Props) => {
 	const [submitting, setSubmitting] = React.useState(false)
 	const { totalAmount, updateItemQuantity, items, removeCartItem, loading } =
 		useCart(true)
-	const { data: session } = useSession()
+
+	const { data: session, isPending, error, refetch } = authClient.useSession()
 
 	const form = useForm<ChechoutFormValues>({
 		resolver: zodResolver(checkoutFormSchema),
 		defaultValues: {
-			email: '',
-			firstName: '',
+			email: session?.user.email,
+			firstName: session?.user.name,
 			lastName: '',
 			phone: '',
 			address: '',
@@ -40,7 +43,7 @@ export default function CheckoutPage() {
 
 	const onSubmit = async (data: ChechoutFormValues) => {
 		if (items.length === 0) {
-			toast.error('Додайте товари до корзини, щоб оформити замовлення')
+			toast.error('Add items to the cart to place an order')
 			return
 		}
 
@@ -56,40 +59,36 @@ export default function CheckoutPage() {
 			console.log(error)
 			setSubmitting(false)
 
-			toast.error('Не вдалося оформити замовлення')
+			toast.error('Failed to place the order')
 		}
 	}
 
 	const onClickCountButton = (
 		id: number,
 		quantity: number,
-		type: 'plus' | 'minus'
+		type: 'plus' | 'minus',
 	) => {
 		updateItemQuantity(id, type === 'plus' ? quantity + 1 : quantity - 1)
 	}
 
-	React.useEffect(() => {
-		async function fetchData() {
-			try {
-				const data = await Api.auth.getMe()
-				const [firstName, lastName] = data.fullName.split(' ')
-
-				form.setValue('firstName', firstName)
-				form.setValue('lastName', lastName)
-				form.setValue('email', data.email)
-			} catch (error) {
-				console.log(error)
-			}
-		}
-		fetchData()
-	}, [session])
-
 	const isFormDisabled = loading || items.length === 0
 
+	React.useEffect(() => {
+		if (session) {
+			form.reset({
+				email: session.user.email,
+				firstName: session.user.name,
+				lastName: '',
+				phone: '',
+				address: '',
+				comment: '',
+			})
+		}
+	}, [session])
 	return (
 		<div>
 			<Title
-				text='Оформлення замовлення'
+				text='Checkout'
 				size='lg'
 				className='font-extrabold mt-7 text-[36px]  mb-11'
 			/>
@@ -127,10 +126,4 @@ export default function CheckoutPage() {
 			</FormProvider>
 		</div>
 	)
-=======
-import { CheckoutPageWrapper } from '../_components/checkout-page-wrapper'
-
-export default function CheckoutPage() {
-	return <CheckoutPageWrapper />
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 }

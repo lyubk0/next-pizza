@@ -17,7 +17,11 @@ export const OrderSuccessTemplate = ({
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${item.productItem.product.name}</td>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
+<<<<<<< HEAD
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: right;">${item.productItem.price} ₴</td>
+=======
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: right;">$${item.productItem.price}</td>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
       </tr>
     `
 		)
@@ -44,12 +48,17 @@ export const OrderSuccessTemplate = ({
       </head>
       <body>
         <div class="container">
+<<<<<<< HEAD
           <div class="header">
+=======
+            <div class="header">
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
             <div class="logo">Next Pizza 🍕</div>
           </div>
           <div class="content">
             <div style="text-align: center;">
               <div class="success-icon">✅</div>
+<<<<<<< HEAD
               <h2>Замовлення успішно оплачено!</h2>
             </div>
             
@@ -65,21 +74,50 @@ export const OrderSuccessTemplate = ({
                   <th>Товар</th>
                   <th style="text-align: center;">Кількість</th>
                   <th style="text-align: right;">Ціна</th>
+=======
+              <h2>Order successfully paid!</h2>
+            </div>
+            
+            <div class="order-info">
+              <p>Order number: <strong>#${orderId}</strong></p>
+              <p>Status: <strong>Paid</strong></p>
+            </div>
+
+            <h3>Order details:</h3>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th style="text-align: center;">Quantity</th>
+                  <th style="text-align: right;">Price</th>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
                 </tr>
               </thead>
               <tbody>
                 ${itemsList}
                 <tr class="total-row">
+<<<<<<< HEAD
                   <td colspan="2">Всього до сплати:</td>
                   <td style="text-align: right;">${totalAmount} ₴</td>
+=======
+                  <td colspan="2">Total to pay:</td>
+                  <td style="text-align: right;">$${totalAmount}</td>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
                 </tr>
               </tbody>
             </table>
 
+<<<<<<< HEAD
             <p>Дякуємо за ваше замовлення! Ми вже почали його готувати і скоро доставимо.</p>
           </div>
           <div class="footer">
             <p>© ${new Date().getFullYear()} Next Pizza. Всі права захищені.</p>
+=======
+            <p>Thank you for your order! We have already started preparing it and will deliver it soon.</p>
+          </div>
+          <div class="footer">
+            <p>© ${new Date().getFullYear()} Next Pizza. All rights reserved.</p>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
           </div>
         </div>
       </body>

@@ -3,7 +3,11 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
+<<<<<<< HEAD
   title: "Next Pizza | Профіль",
+=======
+  title: "Next Pizza | Profile",
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 };
 
 export default function ProfileLayout({

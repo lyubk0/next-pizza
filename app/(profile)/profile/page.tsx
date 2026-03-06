@@ -5,6 +5,7 @@ import { ProfileForm } from '../_components/forms/profile-form'
 
 export default async function ProfilePage() {
 	const session = await getUserSession()
+<<<<<<< HEAD
 	if (!session) {
 		return redirect('/not-auth')
 	}
@@ -17,4 +18,19 @@ export default async function ProfilePage() {
 	}
 
 	return <ProfileForm data={user} />
+=======
+	if (!session) return redirect('/not-auth')
+
+	const [user, accounts] = await Promise.all([
+		prisma.user.findFirst({ where: { id: session.id } }),
+		prisma.account.findMany({
+			where: { userId: session.id },
+			select: { providerId: true },
+		}),
+	])
+
+	if (!user) return redirect('/not-auth')
+
+	return <ProfileForm data={user} accounts={accounts} />
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 }

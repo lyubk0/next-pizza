@@ -69,7 +69,11 @@ export const CartItem: React.FC<Props> = ({
 
       {/* Price and controls section */}
       <div className="flex items-center justify-between w-full sm:w-auto sm:justify-end gap-4 sm:gap-5 mt-2 sm:mt-0">
+<<<<<<< HEAD
         <span className="font-bold whitespace-nowrap">{price} ₴</span>
+=======
+        <span className="font-bold whitespace-nowrap">${price}</span>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 
         <div className="flex items-center gap-3 sm:gap-5">
           <div className="flex gap-2 items-center">

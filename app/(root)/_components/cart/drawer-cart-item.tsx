@@ -87,7 +87,11 @@ export const DrawerCartItem: React.FC<Props> = ({
           </div>
 
           <div className="flex items-center gap-3">
+<<<<<<< HEAD
             <span className="font-bold">{price} ₴</span>
+=======
+            <span className="font-bold">${price}</span>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
             <Trash2Icon
               className="text-gray-400 cursor-pointer hover:text-gray-600"
               size={16}

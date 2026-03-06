@@ -16,7 +16,11 @@ export const CartButton = () => {
         size={"default"}
         className={cn("group relative", { "w-[61px] xs:w-[122px]": loading })}
       >
+<<<<<<< HEAD
         <b className="hidden xs:block">{totalAmount || 0} ₴</b>
+=======
+        <b className="hidden xs:block">${totalAmount || 0}</b>
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
         <span className="h-full hidden xs:block w-[1px] bg-white/30 mx-3"></span>
         <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
           <ShoppingCart

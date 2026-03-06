@@ -1,13 +1,20 @@
 "use client";
 
 import React from "react";
+<<<<<<< HEAD
 import { signIn } from "next-auth/react";
+=======
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 import { LoginForm } from "./forms/login-form";
 import { RegisterForm } from "./forms/register-form";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui";
 import { DialogContent } from "@/components/ui/dialog";
 import Image from "next/image";
+<<<<<<< HEAD
+=======
+import { authClient } from "@/lib/auth-client";
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 
 interface Props {
   open?: boolean;
@@ -37,9 +44,16 @@ export const AuthModal: React.FC<Props> = ({
     redirect = true
   ) => {
     setIsLoading(true);
+<<<<<<< HEAD
     await signIn(provider, {
       callbackUrl,
       redirect,
+=======
+    await authClient.signIn.social({
+      provider,
+      callbackURL: callbackUrl,
+      disableRedirect: !redirect,
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
     });
     setIsLoading(false);
   };
@@ -96,7 +110,11 @@ export const AuthModal: React.FC<Props> = ({
           type="button"
           className="h-10 sm:h-12 mt-2 text-sm sm:text-base"
         >
+<<<<<<< HEAD
           {type === "login" ? "Зареєструватися" : "Увійти"}
+=======
+          {type === "login" ? "Sign up" : "Sign in"}
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
         </Button>
       </DialogContent>
     </Dialog>

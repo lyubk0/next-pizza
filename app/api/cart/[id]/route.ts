@@ -94,7 +94,11 @@ export async function PATCH(
 			)
 		}
 		return NextResponse.json(
+<<<<<<< HEAD
 			{ message: 'Не вдалось оновити корзину' },
+=======
+			{ message: 'Failed to update cart' },
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 			{ status: 500 }
 		)
 	}
@@ -182,7 +186,11 @@ export async function DELETE(
 			)
 		}
 		return NextResponse.json(
+<<<<<<< HEAD
 			{ message: 'Не вдалось оновити корзину' },
+=======
+			{ message: 'Failed to update cart' },
+>>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 			{ status: 500 }
 		)
 	}
