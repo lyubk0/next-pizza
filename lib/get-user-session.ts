@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-import { getServerSession } from "next-auth";
-import { authOptions } from "../constanst/authOptions";
+import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
 
 export const getUserSession = async () => {
-  const session = await getServerSession(authOptions);
-=======
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	})
 
-export const getUserSession = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
-  return session?.user ?? null;
-};
+	return session?.user ?? null
+}
