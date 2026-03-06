@@ -3,11 +3,7 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-<<<<<<< HEAD
-	title: 'Next Pizza | Корзина',
-=======
 	title: 'Next Pizza | Cart',
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 }
 
 export default function CartLayout({

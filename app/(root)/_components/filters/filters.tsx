@@ -26,29 +26,17 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div className={className}>
-<<<<<<< HEAD
-			<Title text='Фільтрація' size='sm' className='mb-5 font-bold' />
-=======
 			<Title text='Filters' size='sm' className='mb-5 font-bold' />
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 
 			<CheckboxFiltersGroup
 				name='pizzaTypes'
 				className='mb-5'
 				selectedValues={selectedPizzaTypes}
-<<<<<<< HEAD
-				title='Тип тіста'
-				onClickCheckbox={togglePizzaTypes}
-				items={[
-					{ text: 'Тонке', value: '1' },
-					{ text: 'Традиційне', value: '2' },
-=======
 				title='Dough type'
 				onClickCheckbox={togglePizzaTypes}
 				items={[
 					{ text: 'Thin', value: '1' },
 					{ text: 'Traditional', value: '2' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 				]}
 			/>
 
@@ -56,30 +44,17 @@ export const Filters: React.FC<Props> = ({ className }) => {
 				name='sizes'
 				className='mb-5'
 				selectedValues={selectedSizes}
-<<<<<<< HEAD
-				title='Розміри'
-				onClickCheckbox={toggleSize}
-				items={[
-					{ text: 'Маленька', value: '25' },
-					{ text: 'Середня', value: '30' },
-					{ text: 'Велика', value: '40' },
-=======
 				title='Sizes'
 				onClickCheckbox={toggleSize}
 				items={[
 					{ text: 'Small', value: '25' },
 					{ text: 'Medium', value: '30' },
 					{ text: 'Large', value: '40' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 				]}
 			/>
 
 			<div className='mt-5 border-y border-y-neutral-100 py-6 pb-7'>
-<<<<<<< HEAD
-				<p className='font-bold mb-3'>Ціна від і до</p>
-=======
 				<p className='font-bold mb-3'>Price from and to</p>
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 
 				<div className='flex gap-3 mb-5'>
 					<Input
@@ -117,11 +92,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
 			</div>
 
 			<CheckboxFiltersGroup
-<<<<<<< HEAD
-				title='Інгредієнти'
-=======
 				title='Ingredients'
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 				className='mt-5'
 				limit={5}
 				selectedValues={selectedIngredients}

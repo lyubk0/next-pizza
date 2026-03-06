@@ -13,10 +13,7 @@ const nextConfig = {
 		})
 		return config
 	},
-<<<<<<< HEAD
-=======
 	turbopack: {},
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 }
 
 export default nextConfig

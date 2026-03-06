@@ -1,4 +1,3 @@
-// middleware.ts
 import { getSessionCookie } from 'better-auth/cookies'
 import { NextRequest, NextResponse } from 'next/server'
 

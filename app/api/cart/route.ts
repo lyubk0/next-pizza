@@ -30,12 +30,8 @@ export async function GET(req: NextRequest) {
 	} catch (error) {
 		console.log('[CART_GET] Server error')
 		return NextResponse.json(
-<<<<<<< HEAD
-			{ message: 'Не вдалось отримати корзину' },
-=======
 			{ message: 'Failed to fetch cart' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
-			{ status: 500 }
+			{ status: 500 },
 		)
 	}
 }
@@ -109,7 +105,7 @@ export async function POST(req: NextRequest) {
 
 			const totalAmount = allCartItems.reduce(
 				(acc, item) => acc + calcCartItemTotalPrice(item),
-				0
+				0,
 			)
 
 			// Update cart with new total
@@ -138,12 +134,8 @@ export async function POST(req: NextRequest) {
 	} catch (error) {
 		console.log('[CART_POST] Server error', error)
 		return NextResponse.json(
-<<<<<<< HEAD
-			{ message: 'Не вдалось створити корзину' },
-=======
 			{ message: 'Failed to create cart' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
-			{ status: 500 }
+			{ status: 500 },
 		)
 	}
 }

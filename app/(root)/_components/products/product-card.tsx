@@ -27,11 +27,7 @@ export const ProductCard: React.FC<ProductProps> = ({
 	return (
 		<div className={cn(className, 'flex [flex-flow:column] justify-between')}>
 			<div>
-<<<<<<< HEAD
-				<div className='flex justify-center p-6 bg-secondary rounded-lg h-[260px]'>
-=======
 				<div className='flex justify-center p-6 bg-secondary/40 rounded-lg h-[260px]'>
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					<Image
 						src={imageUrl}
 						alt={name}
@@ -50,20 +46,12 @@ export const ProductCard: React.FC<ProductProps> = ({
 			<div>
 				<div className='flex justify-between items-center mt-4'>
 					<span className='text-[20px]'>
-<<<<<<< HEAD
-						від <b>{price} ₴</b>
-=======
 						from <b>${price}</b>
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					</span>
 
 					<Button variant='secondary' className='text-base font-bold'>
 						<Plus size={20} className=' mr-1' />
-<<<<<<< HEAD
-						Додати
-=======
 						Add
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					</Button>
 				</div>
 			</div>

@@ -21,22 +21,14 @@ export default async function Home({
 			{/* <Stories /> */}
 			<Container className='pb-14 mt-10'>
 				<div className='flex gap-[80px]'>
-<<<<<<< HEAD
-					{/* Фільтрація */}
-=======
 					{/* Filters */}
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					<div className='w-[250px] hidden lg:block'>
 						<Suspense>
 							<Filters />
 						</Suspense>
 					</div>
 
-<<<<<<< HEAD
-					{/* Список товарів */}
-=======
 					{/* Products list */}
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
 					<div className='flex-1'>
 						<div className='flex flex-col gap-16'>
 							{categoires.map(category => (

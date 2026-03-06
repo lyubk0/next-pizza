@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function PATCH(
 	req: NextRequest,
-	{ params }: { params: Promise<{ id: string }> }
+	{ params }: { params: Promise<{ id: string }> },
 ) {
 	try {
 		const id = Number((await params).id)
@@ -18,7 +18,7 @@ export async function PATCH(
 		if (!data || typeof data.quantity !== 'number') {
 			return NextResponse.json(
 				{ error: 'Invalid request body' },
-				{ status: 400 }
+				{ status: 400 },
 			)
 		}
 
@@ -27,7 +27,7 @@ export async function PATCH(
 		if (!token || token.trim() === '') {
 			return NextResponse.json(
 				{ error: 'Cart token not found or is invalid' },
-				{ status: 404 }
+				{ status: 404 },
 			)
 		}
 
@@ -63,7 +63,7 @@ export async function PATCH(
 
 			const totalAmount = allCartItems.reduce(
 				(acc, item) => acc + calcCartItemTotalPrice(item),
-				0
+				0,
 			)
 
 			// Update cart with new total and return full cart data
@@ -90,23 +90,19 @@ export async function PATCH(
 		if (error instanceof Error && error.message === 'Cart item not found') {
 			return NextResponse.json(
 				{ error: 'Cart item not found' },
-				{ status: 404 }
+				{ status: 404 },
 			)
 		}
 		return NextResponse.json(
-<<<<<<< HEAD
-			{ message: 'Не вдалось оновити корзину' },
-=======
 			{ message: 'Failed to update cart' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
-			{ status: 500 }
+			{ status: 500 },
 		)
 	}
 }
 
 export async function DELETE(
 	req: NextRequest,
-	{ params }: { params: Promise<{ id: string }> }
+	{ params }: { params: Promise<{ id: string }> },
 ) {
 	try {
 		const id = Number((await params).id)
@@ -120,7 +116,7 @@ export async function DELETE(
 		if (!token || token.trim() === '') {
 			return NextResponse.json(
 				{ error: 'Cart token not found or is invalid' },
-				{ status: 404 }
+				{ status: 404 },
 			)
 		}
 
@@ -155,7 +151,7 @@ export async function DELETE(
 
 			const totalAmount = allCartItems.reduce(
 				(acc, item) => acc + calcCartItemTotalPrice(item),
-				0
+				0,
 			)
 
 			// Update cart with new total and return full cart data
@@ -182,16 +178,12 @@ export async function DELETE(
 		if (error instanceof Error && error.message === 'Cart item not found') {
 			return NextResponse.json(
 				{ error: 'Cart item not found' },
-				{ status: 404 }
+				{ status: 404 },
 			)
 		}
 		return NextResponse.json(
-<<<<<<< HEAD
-			{ message: 'Не вдалось оновити корзину' },
-=======
 			{ message: 'Failed to update cart' },
->>>>>>> 1ad4e97 (migrated from next auth to better auth, improved ui)
-			{ status: 500 }
+			{ status: 500 },
 		)
 	}
 }
