@@ -13,7 +13,7 @@ The project focuses on building a scalable e-commerce architecture with clean UI
 
 ---
 
-# 🎥 Demo
+# 🎥 Demo (Demo screenshots and videos may not reflect the current version of the website)
 
 Video demonstration of the application:
 
